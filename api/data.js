@@ -5,10 +5,11 @@ const PATH = "call-lab/db.json";
 const MAX_BYTES = 4 * 1024 * 1024;
 
 function authorized(req) {
-  const expected = process.env.ACCESS_CODE || "";
-  const given = String(req.headers["x-access-code"] || "");
-  if (!expected || given.length !== expected.length) return false;
-  return timingSafeEqual(Buffer.from(given), Buffer.from(expected));
+  const expected = String(process.env.ACCESS_CODE || "").trim();
+  const given = String(req.headers["x-access-code"] || "").trim();
+  const a = Buffer.from(given), b = Buffer.from(expected);
+  if (!expected || a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
 }
 
 async function readBody(req) {
@@ -26,6 +27,9 @@ async function readBody(req) {
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
+  if (!String(process.env.ACCESS_CODE || "").trim()) {
+    return res.status(503).json({ error: "not_configured" });
+  }
   if (!authorized(req)) return res.status(401).json({ error: "bad access code" });
 
   if (req.method === "GET") {

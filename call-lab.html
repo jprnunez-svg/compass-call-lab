@@ -390,7 +390,8 @@ function loadCloud(refresh){
   syncStatus("Loading…");
   return api("GET").then(function(r){
     if(r.status===401){ lock("Wrong access code."); return; }
-    if(!r.ok) throw new Error("http "+r.status);
+    if(r.status===503){ lock("The server has no ACCESS_CODE set yet. In Vercel: Settings → Environment Variables → add ACCESS_CODE (Production checked), then Redeploy."); return; }
+    if(!r.ok){ return r.text().then(function(t){ lock("Server error ("+r.status+"). Storage may not be connected. "+t.slice(0,120)); }); }
     return r.json().then(function(d){
       document.getElementById("lock").classList.remove("show");
       if(d && d.calls && d.scripts){ d.objections=d.objections||[]; d.experiments=d.experiments||[]; db=d; save(true, true); syncStatus("Synced ✓"); }
