@@ -6,386 +6,311 @@
 <title>Recruiting Call Lab</title>
 <style>
 :root{
-  --bg:#f6f7f9; --surface:#ffffff; --ink:#15181d; --muted:#626b78; --border:#e2e5ea;
-  --accent:#1f4fd1; --accent-ink:#ffffff; --good:#1b7f4a; --warn:#b26a00; --bad:#b4232c;
-  --chip:#eef1f6; --bar:#1f4fd1; --dim:#9aa3af;
+  --bg:#f5f6f8; --surface:#fff; --ink:#14171c; --muted:#5f6876; --border:#e1e4ea; --chip:#eef1f6;
+  --accent:#1f4fd1; --accent-ink:#fff; --good:#17804a; --warn:#a86400; --bad:#b4232c; --dim:#a0a8b4;
+  --o-neutral:#e9ecf1; --o-bad:#fbe7e8; --o-mid:#fff2dc; --o-good:#e2f4ea; --o-best:#d6e4ff;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0f1115; --surface:#171a20; --ink:#e8eaee; --muted:#9aa3af; --border:#2a2f38;
-    --accent:#6f95ff; --accent-ink:#0f1115; --good:#4cc38a; --warn:#e3a33b; --bad:#f06a72;
-    --chip:#222731; --bar:#6f95ff; --dim:#5d6572;
-  }
-}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e1014; --surface:#171a20; --ink:#e9ebef; --muted:#9aa3af; --border:#2a2f38; --chip:#232831;
+  --accent:#7097ff; --accent-ink:#0e1014; --good:#4cc38a; --warn:#e3a33b; --bad:#f06a72; --dim:#5d6572;
+  --o-neutral:#232831; --o-bad:#3a2023; --o-mid:#3a2e19; --o-good:#1a3226; --o-best:#1d2a4a;
+}}
 :root[data-theme="dark"]{
-  --bg:#0f1115; --surface:#171a20; --ink:#e8eaee; --muted:#9aa3af; --border:#2a2f38;
-  --accent:#6f95ff; --accent-ink:#0f1115; --good:#4cc38a; --warn:#e3a33b; --bad:#f06a72;
-  --chip:#222731; --bar:#6f95ff; --dim:#5d6572;
+  --bg:#0e1014; --surface:#171a20; --ink:#e9ebef; --muted:#9aa3af; --border:#2a2f38; --chip:#232831;
+  --accent:#7097ff; --accent-ink:#0e1014; --good:#4cc38a; --warn:#e3a33b; --bad:#f06a72; --dim:#5d6572;
+  --o-neutral:#232831; --o-bad:#3a2023; --o-mid:#3a2e19; --o-good:#1a3226; --o-best:#1d2a4a;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{padding:16px;border-bottom:1px solid var(--border);background:var(--surface);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-header h1{font-size:18px;margin:0}
-header .sub{color:var(--muted);font-size:13px}
-nav{display:flex;gap:4px;flex-wrap:wrap;padding:8px 16px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
-nav button{background:none;border:0;padding:8px 12px;border-radius:8px;color:var(--muted);font:inherit;cursor:pointer}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+header h1{font-size:16px;margin:0;margin-right:auto}
+nav{display:flex;gap:4px}
+nav button{background:none;border:0;padding:7px 12px;border-radius:8px;color:var(--muted);font:inherit;cursor:pointer}
 nav button.on{background:var(--chip);color:var(--ink);font-weight:600}
-main{max-width:1200px;margin:0 auto;padding:16px}
-section{display:none}
-section.on{display:block}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
-.card h2{font-size:16px;margin:0 0 12px}
-.card h3{font-size:14px;margin:16px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-.two{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:900px){.two{grid-template-columns:1fr 1fr}}
-label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
-input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px;width:100%}
-textarea{min-height:70px;resize:vertical}
-.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}
+#syncStatus{font-size:12px;color:var(--muted)}
+main{max-width:1280px;margin:0 auto;padding:16px}
+section{display:none} section.on{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px}
+.card h2{font-size:15px;margin:0 0 10px}
+.muted{color:var(--muted);font-size:13px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:7px 9px;width:100%}
+textarea{resize:vertical}
+label.f{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted)}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 .btn.ghost{background:var(--chip);color:var(--ink);font-weight:500}
-.btn.sm{padding:4px 8px;font-size:12px}
+.btn.sm{padding:4px 9px;font-size:12px}
 .btn.danger{background:none;color:var(--bad);border:1px solid var(--border)}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* session bar */
+.session{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end}
+/* call layout */
+.call{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:960px){.call{grid-template-columns:1.25fr 1fr}}
+.scriptbox{white-space:pre-wrap;font-size:18px;line-height:1.55;max-height:62vh;overflow:auto}
+.abtag{display:inline-block;font-weight:700;font-size:13px;padding:2px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);margin-right:8px}
+.pad{display:grid;gap:8px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:520px){.pad{grid-template-columns:repeat(3,1fr)}}
+.ob{border:1px solid var(--border);border-radius:12px;padding:16px 8px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;color:var(--ink);min-height:64px;position:relative}
+.ob kbd{position:absolute;top:6px;left:8px;font-size:11px;color:var(--muted);font-family:inherit}
+.ob:active{transform:scale(.97)}
+.t0{background:var(--o-neutral)} .t1{background:var(--o-bad)} .t2{background:var(--o-mid)} .t3{background:var(--o-good)} .t4{background:var(--o-best)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:4px;background:var(--chip);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;user-select:none;border:1px solid transparent}
-.chip input{display:none}
+.chip{background:var(--chip);border:1px solid transparent;border-radius:999px;padding:6px 11px;font-size:13px;cursor:pointer;user-select:none}
 .chip.on{border-color:var(--accent);color:var(--accent);font-weight:600}
-.outcomes{display:grid;gap:6px;grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
-.outcomes .chip{justify-content:center;border-radius:8px;padding:8px}
-.script-view{white-space:pre-wrap;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;max-height:520px;overflow:auto;font-size:15px}
+.reply{margin-top:10px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--bg);border-radius:6px;font-size:15px;display:none}
+.reply.show{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
+.stats .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.stats .l{font-size:11px;color:var(--muted)}
+details summary{cursor:pointer;color:var(--muted);font-size:13px}
+.last{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:10px;min-height:28px}
+
+/* results */
+.kpis{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));margin-bottom:14px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.kpi .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:12px;color:var(--muted)}
+.grid2{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:900px){.grid2{grid-template-columns:1fr 1fr}}
 .tablewrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:13px}
-th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
 th{color:var(--muted);font-weight:600;white-space:nowrap}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 tr.thin td{color:var(--dim)}
-.barcell{min-width:110px}
-.bar{height:8px;border-radius:4px;background:var(--bar)}
-.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:16px}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px}
-.kpi .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
-.kpi .l{font-size:12px;color:var(--muted)}
-.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:var(--chip)}
-.tag.good{color:var(--good)} .tag.warn{color:var(--warn)} .tag.bad{color:var(--bad)}
-.muted{color:var(--muted);font-size:13px}
-.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none}
-.toast.show{opacity:1}
-.list-item{border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px}
-.list-item .top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
-#lock{position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.bar{height:7px;border-radius:4px;background:var(--accent);min-width:2px}
+.insight{padding:9px 12px;border-left:3px solid var(--accent);background:var(--bg);border-radius:6px;margin-bottom:8px}
+.item{border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.item .top{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;background:var(--chip)}
+
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;opacity:0;transition:opacity .15s;pointer-events:none;display:flex;gap:12px;align-items:center;z-index:30}
+.toast.show{opacity:1;pointer-events:auto}
+.toast button{background:none;border:1px solid var(--bg);color:var(--bg);border-radius:6px;padding:3px 8px;font:inherit;font-size:13px;cursor:pointer}
+#lock{position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;padding:16px;z-index:40}
 #lock.show{display:flex}
-#lock .card{max-width:360px;width:100%}
-.insight{padding:10px 12px;border-left:3px solid var(--accent);background:var(--bg);border-radius:6px;margin-bottom:8px}
+#lock .card{max-width:380px;width:100%}
 </style>
 </head>
 <body>
 <header>
-  <div>
-    <h1>Recruiting Call Lab</h1>
-    <div class="sub">Log every dial · test one variable at a time · let the data pick the script</div>
-  </div>
-  <div class="row">
-    <button class="btn ghost sm" id="exportJson">Export backup (JSON)</button>
-    <label class="btn ghost sm" style="flex-direction:row;cursor:pointer">Import<input type="file" id="importJson" accept="application/json" hidden></label>
-    <button class="btn ghost sm" id="exportCsv">Export CSV</button>
-    <span class="muted" id="syncStatus"></span>
-    <button class="btn ghost sm" id="themeBtn" title="Toggle theme">◐</button>
-  </div>
+  <h1>Recruiting Call Lab</h1>
+  <nav id="tabs">
+    <button data-tab="call" class="on">Call</button>
+    <button data-tab="results">Results</button>
+    <button data-tab="scripts">Scripts</button>
+  </nav>
+  <span id="syncStatus"></span>
+  <button class="btn ghost sm" id="themeBtn" title="Light / dark">◐</button>
 </header>
-<nav id="tabs">
-  <button data-tab="log" class="on">Log a Call</button>
-  <button data-tab="calls">Call History</button>
-  <button data-tab="insights">Insights</button>
-  <button data-tab="scripts">Scripts</button>
-  <button data-tab="objections">Objections</button>
-  <button data-tab="experiments">Experiments</button>
-</nav>
 <main>
 
-<!-- LOG A CALL -->
-<section id="log" class="on">
-  <div class="two">
+<!-- CALL -->
+<section id="call" class="on">
+  <div class="card">
+    <div class="session">
+      <label class="f">Script<select id="sA"></select></label>
+      <label class="f">A/B test against (optional)<select id="sB"></select></label>
+      <label class="f">State<input id="sState" list="dlState" placeholder="TX"></label>
+      <label class="f">City<input id="sCity" list="dlCity" placeholder="Houston"></label>
+      <label class="f">List / source<input id="sSource" list="dlSource" placeholder="e.g. Zillow top agents"></label>
+    </div>
+  </div>
+  <div class="call">
     <div class="card">
-      <h2 id="formTitle">Log a call</h2>
-      <form id="callForm" autocomplete="off">
-        <input type="hidden" name="id">
-        <div class="grid">
-          <label>Agent name<input name="agent" required></label>
-          <label>Phone<input name="phone" type="tel"></label>
-          <label>Current brokerage<input name="brokerage" list="dl-brokerage"></label>
-          <label>State<input name="state" list="dl-state" maxlength="20" placeholder="TX"></label>
-          <label>City<input name="city" list="dl-city"></label>
-          <label>Experience
-            <select name="tenure"><option value="">—</option><option>New (&lt;2 yrs)</option><option>2–5 yrs</option><option>5–10 yrs</option><option>10+ yrs</option></select>
-          </label>
-          <label>Production
-            <select name="production"><option value="">—</option><option>Low</option><option>Mid</option><option>High</option><option>Top producer</option></select>
-          </label>
-          <label>Lead source<input name="source" list="dl-source" placeholder="Zillow, MLS, referral…"></label>
-          <label>Script / version<select name="scriptId" id="scriptSelect"></select></label>
-          <label>Date &amp; time<input name="ts" type="datetime-local"></label>
-          <label>Duration (min)<input name="duration" type="number" min="0" step="0.5"></label>
-          <label>Follow-up date<input name="followUp" type="date"></label>
-        </div>
-        <h3>Outcome</h3>
-        <div class="outcomes" id="outcomeChips"></div>
-        <h3>Objections raised</h3>
-        <div class="chips" id="objChips"></div>
-        <h3>Agent's mood / receptiveness</h3>
-        <div class="chips" id="moodChips"></div>
-        <div class="grid" style="grid-template-columns:1fr;margin-top:12px">
-          <label>What they said (key quotes, answers)<textarea name="notes"></textarea></label>
-          <label>What worked / what I'd change next time<textarea name="learning"></textarea></label>
-        </div>
-        <div class="row" style="margin-top:12px">
-          <button class="btn" type="submit" id="saveBtn">Save call</button>
-          <button class="btn ghost" type="button" id="saveNextBtn">Save &amp; keep location/script</button>
-          <button class="btn ghost" type="button" id="cancelEdit" hidden>Cancel edit</button>
-        </div>
-      </form>
+      <div class="row" style="justify-content:space-between;margin-bottom:8px">
+        <div><span class="abtag" id="abTag" hidden>A</span><b id="scriptName"></b></div>
+        <span class="muted" id="scriptStat"></span>
+      </div>
+      <div class="scriptbox" id="scriptBox"></div>
     </div>
     <div>
       <div class="card">
-        <div class="row" style="justify-content:space-between"><h2 style="margin:0">On screen while you dial</h2><span class="muted" id="scriptMeta"></span></div>
-        <div class="script-view" id="scriptView" style="margin-top:12px"></div>
+        <h2>Tap the outcome — that's the whole log</h2>
+        <div class="pad" id="pad"></div>
+        <div class="last"><span id="lastLine">Nothing logged yet this session.</span><button class="btn ghost sm" id="undoBtn" hidden>Undo</button></div>
+      </div>
+      <div class="card">
+        <h2>They said… <span class="muted">(tap to see your reply — it's recorded with the next outcome)</span></h2>
+        <div class="chips" id="objChips"></div>
+        <div class="reply" id="reply"></div>
+        <details style="margin-top:12px"><summary>Optional: agent name / note for this call</summary>
+          <div class="row" style="margin-top:8px">
+            <input id="cAgent" placeholder="Agent name" style="flex:1;min-width:140px">
+            <input id="cNote" placeholder="One-line note (what they said, what worked)" style="flex:2;min-width:200px">
+          </div>
+        </details>
       </div>
       <div class="card">
         <h2>Today</h2>
-        <div class="kpis" id="todayKpis" style="margin:0"></div>
+        <div class="stats" id="todayStats"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CALL HISTORY -->
-<section id="calls">
-  <div class="card">
-    <h2>Call history</h2>
-    <div class="grid" id="filters">
-      <label>Search<input id="fText" placeholder="name, notes, brokerage…"></label>
-      <label>State<select id="fState"></select></label>
-      <label>City<select id="fCity"></select></label>
-      <label>Script<select id="fScript"></select></label>
-      <label>Outcome<select id="fOutcome"></select></label>
-      <label>From<input type="date" id="fFrom"></label>
-      <label>To<input type="date" id="fTo"></label>
+<!-- RESULTS -->
+<section id="results">
+  <div class="card row" style="justify-content:space-between">
+    <h2 style="margin:0">What's working</h2>
+    <div class="row">
+      <select id="rRange" style="width:auto"><option value="all">All time</option><option value="1">Today</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select>
+      <select id="rRank" style="width:auto"><option value="meetRate">Rank by meetings</option><option value="posRate">Rank by positive replies</option><option value="connRate">Rank by pickups</option></select>
     </div>
-    <p class="muted" id="callCount"></p>
-    <div class="tablewrap"><table id="callTable"></table></div>
   </div>
-  <div class="card">
-    <h2>Follow-ups due</h2>
-    <div class="tablewrap"><table id="followTable"></table></div>
-  </div>
-</section>
-
-<!-- INSIGHTS -->
-<section id="insights">
-  <div class="card">
-    <div class="row" style="justify-content:space-between">
-      <h2 style="margin:0">Insights</h2>
-      <div class="row">
-        <label style="flex-direction:row;align-items:center;gap:6px">Period
-          <select id="iRange"><option value="all">All time</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select>
-        </label>
-        <label style="flex-direction:row;align-items:center;gap:6px">Rank by
-          <select id="iRank"><option value="meet">Meeting rate</option><option value="pos">Positive rate</option><option value="conn">Connect rate</option></select>
-        </label>
-      </div>
-    </div>
-    <p class="muted">Connect = live conversation. Positive = callback, interested, meeting or joined (of connects). Meeting = meeting or joined (of connects). Grey rows have fewer than 10 dials — too early to trust.</p>
-  </div>
-  <div class="kpis" id="allKpis"></div>
-  <div class="card"><h2>What the data says so far</h2><div id="autoInsights"></div></div>
-  <div class="two">
-    <div class="card"><h2>By script / version</h2><div class="tablewrap"><table id="tScript"></table></div></div>
+  <div class="kpis" id="kpis"></div>
+  <div class="card"><h2>Takeaways</h2><div id="takeaways"></div>
+    <p class="muted" style="margin:8px 0 0">Pickup = they answered. Positive = call back / interested / meeting (of pickups). Meeting = meetings booked (of pickups). Grey rows have under 20 dials — too early to trust.</p></div>
+  <div class="grid2">
+    <div class="card"><h2>By script</h2><div class="tablewrap"><table id="tScript"></table></div></div>
+    <div class="card"><h2>Objections — how often, and do you recover?</h2><div class="tablewrap"><table id="tObj"></table></div></div>
     <div class="card"><h2>By state</h2><div class="tablewrap"><table id="tState"></table></div></div>
     <div class="card"><h2>By city</h2><div class="tablewrap"><table id="tCity"></table></div></div>
-    <div class="card"><h2>By current brokerage</h2><div class="tablewrap"><table id="tBrokerage"></table></div></div>
     <div class="card"><h2>By time of day</h2><div class="tablewrap"><table id="tHour"></table></div></div>
     <div class="card"><h2>By weekday</h2><div class="tablewrap"><table id="tDay"></table></div></div>
-    <div class="card"><h2>By experience</h2><div class="tablewrap"><table id="tTenure"></table></div></div>
-    <div class="card"><h2>By production</h2><div class="tablewrap"><table id="tProd"></table></div></div>
-    <div class="card"><h2>By lead source</h2><div class="tablewrap"><table id="tSource"></table></div></div>
-    <div class="card"><h2>Objections — how often, and do we recover?</h2><div class="tablewrap"><table id="tObj"></table></div></div>
+    <div class="card"><h2>By list / source</h2><div class="tablewrap"><table id="tSource"></table></div></div>
   </div>
+  <div class="card"><h2>Recent calls</h2><div id="recent"></div></div>
 </section>
 
 <!-- SCRIPTS -->
 <section id="scripts">
-  <div class="two">
+  <div class="grid2">
     <div class="card">
-      <h2 id="scriptFormTitle">New script / version</h2>
-      <form id="scriptForm">
-        <input type="hidden" name="id">
-        <div class="grid">
-          <label>Name<input name="name" required placeholder="Opener B — market question"></label>
-          <label>Version<input name="version" placeholder="v1, B2…"></label>
-          <label>Status<select name="status"><option>Testing</option><option>Winner</option><option>Retired</option></select></label>
-        </div>
-        <label style="margin-top:12px">Script text<textarea name="body" style="min-height:260px" required></textarea></label>
-        <label style="margin-top:12px">What changed vs. last version / why<textarea name="changeNote"></textarea></label>
-        <div class="row" style="margin-top:12px">
-          <button class="btn" type="submit">Save script</button>
-          <button class="btn ghost" type="button" id="scriptReset">Clear</button>
-        </div>
-      </form>
+      <h2 id="sfTitle">New script</h2>
+      <input type="hidden" id="sfId">
+      <div class="row">
+        <input id="sfName" placeholder="Name, e.g. Opener B — market question" style="flex:2;min-width:200px">
+        <select id="sfStatus" style="flex:1;min-width:120px"><option>Testing</option><option>Winner</option><option>Retired</option></select>
+      </div>
+      <textarea id="sfBody" rows="14" style="margin-top:8px" placeholder="The words you say. Use [Name], [City] as placeholders."></textarea>
+      <input id="sfNote" style="margin-top:8px" placeholder="What changed vs. the last version, and why">
+      <div class="row" style="margin-top:8px"><button class="btn" id="sfSave">Save script</button><button class="btn ghost" id="sfClear">New</button></div>
+      <h2 style="margin-top:20px">Objections &amp; your replies</h2>
+      <input type="hidden" id="ofId">
+      <input id="ofLabel" placeholder="What they say, e.g. What's the split?">
+      <textarea id="ofReply" rows="3" style="margin-top:8px" placeholder="Your best reply"></textarea>
+      <div class="row" style="margin-top:8px"><button class="btn" id="ofSave">Save objection</button><button class="btn ghost" id="ofClear">New</button></div>
     </div>
-    <div class="card"><h2>Script library</h2><div id="scriptList"></div></div>
+    <div>
+      <div class="card"><h2>Scripts</h2><div id="scriptList"></div></div>
+      <div class="card"><h2>Objections</h2><div id="objList"></div></div>
+      <div class="card"><h2>Data</h2>
+        <div class="row">
+          <button class="btn ghost sm" id="exportJson">Export backup</button>
+          <label class="btn ghost sm" style="cursor:pointer">Import backup<input type="file" id="importJson" accept="application/json" hidden></label>
+          <button class="btn ghost sm" id="exportCsv">Export CSV</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- OBJECTIONS -->
-<section id="objections">
-  <div class="two">
-    <div class="card">
-      <h2>Add / edit objection</h2>
-      <form id="objForm">
-        <input type="hidden" name="id">
-        <label>Objection (short label)<input name="label" required placeholder="What's the split?"></label>
-        <label style="margin-top:12px">Best response so far<textarea name="response"></textarea></label>
-        <label style="margin-top:12px">Notes / alternate responses tried<textarea name="notes"></textarea></label>
-        <div class="row" style="margin-top:12px"><button class="btn" type="submit">Save objection</button><button class="btn ghost" type="button" id="objReset">Clear</button></div>
-      </form>
-    </div>
-    <div class="card"><h2>Objection bank</h2><div id="objList"></div></div>
-  </div>
-</section>
-
-<!-- EXPERIMENTS -->
-<section id="experiments">
-  <div class="two">
-    <div class="card">
-      <h2>New experiment</h2>
-      <form id="expForm">
-        <input type="hidden" name="id">
-        <div class="grid">
-          <label>Title<input name="title" required placeholder="Opener B vs A in Houston"></label>
-          <label>Start date<input type="date" name="start"></label>
-          <label>Status<select name="status"><option>Running</option><option>Won</option><option>Lost</option><option>Inconclusive</option></select></label>
-        </div>
-        <label style="margin-top:12px">Hypothesis (what I expect and why)<textarea name="hypothesis"></textarea></label>
-        <label style="margin-top:12px">The ONE thing I'm changing<textarea name="change"></textarea></label>
-        <label style="margin-top:12px">Result / what I learned<textarea name="result"></textarea></label>
-        <div class="row" style="margin-top:12px"><button class="btn" type="submit">Save experiment</button><button class="btn ghost" type="button" id="expReset">Clear</button></div>
-      </form>
-    </div>
-    <div class="card"><h2>Experiment journal</h2><div id="expList"></div></div>
-  </div>
-</section>
-
 </main>
+
+<datalist id="dlState"></datalist><datalist id="dlCity"></datalist><datalist id="dlSource"></datalist>
+<div class="toast" id="toast"><span id="toastMsg"></span><button id="toastUndo" hidden>Undo</button></div>
 <div id="lock"><div class="card">
   <h2>Recruiting Call Lab</h2>
-  <p class="muted">Enter your access code to open your call log.</p>
+  <p class="muted">Enter your access code.</p>
   <form id="lockForm"><input id="lockCode" type="password" autocomplete="current-password" placeholder="Access code" required>
   <p class="muted" id="lockErr" style="color:var(--bad);min-height:1em"></p>
   <button class="btn" type="submit" style="width:100%">Unlock</button></form>
 </div></div>
-<div class="toast" id="toast"></div>
-<datalist id="dl-brokerage"></datalist><datalist id="dl-state"></datalist><datalist id="dl-city"></datalist><datalist id="dl-source"></datalist>
 
 <script>
 (function(){
 "use strict";
 var KEY = "compassCallLab.v1";
-
 var OUTCOMES = [
-  {k:"no_answer", l:"No answer", stage:0},
-  {k:"voicemail", l:"Left voicemail", stage:0},
-  {k:"wrong_number", l:"Wrong / bad number", stage:0},
-  {k:"gatekeeper", l:"Gatekeeper / assistant", stage:0},
-  {k:"hung_up", l:"Hung up", stage:1},
-  {k:"not_interested", l:"Not interested", stage:1},
-  {k:"dnc", l:"Do not call", stage:1},
-  {k:"callback", l:"Call back later", stage:2},
-  {k:"interested", l:"Interested / send info", stage:2},
-  {k:"meeting", l:"Meeting booked", stage:3},
-  {k:"joined", l:"Joined Compass", stage:4}
+  {k:"no_answer", l:"No answer", s:0},
+  {k:"voicemail", l:"Voicemail", s:0},
+  {k:"wrong_number", l:"Bad # / gatekeeper", s:0},
+  {k:"not_interested", l:"Not interested", s:1},
+  {k:"dnc", l:"Don't call again", s:1},
+  {k:"callback", l:"Call back", s:2},
+  {k:"interested", l:"Interested", s:2},
+  {k:"meeting", l:"Meeting booked", s:3},
+  {k:"joined", l:"Joined Compass", s:4}
 ];
-var OUT = {}; OUTCOMES.forEach(function(o){ OUT[o.k]=o; });
-var MOODS = ["1 Hostile","2 Cold","3 Neutral","4 Warm","5 Excited"];
+var STAGE = {gatekeeper:0, hung_up:1}; OUTCOMES.forEach(function(o){ STAGE[o.k]=o.s; });
+var LABEL = {gatekeeper:"Gatekeeper", hung_up:"Hung up"}; OUTCOMES.forEach(function(o){ LABEL[o.k]=o.l; });
 var DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+function $(id){ return document.getElementById(id); }
+function $$(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
-function $(s,r){ return (r||document).querySelector(s); }
-function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
-function pad(n){ return (n<10?"0":"")+n; }
-function localDT(d){ return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+"T"+pad(d.getHours())+":"+pad(d.getMinutes()); }
-function dayKey(d){ return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
-function pct(n,d){ return d? Math.round(n/d*100):0; }
-function toast(m){ var t=$("#toast"); t.textContent=m; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},1800); }
+function pad2(n){ return (n<10?"0":"")+n; }
+function localDT(d){ return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())+"T"+pad2(d.getHours())+":"+pad2(d.getMinutes()); }
+function dayKey(d){ return localDT(d).slice(0,10); }
+function pct(n,d){ return d?Math.round(n/d*100):0; }
 
+var toastTimer;
+function toast(msg, undo){
+  $("toastMsg").textContent = msg; $("toastUndo").hidden = !undo;
+  $("toast").classList.add("show"); clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ $("toast").classList.remove("show"); }, undo?5000:1800);
+}
+
+/* ---------- data ---------- */
 var SEED_SCRIPTS = [
-  {name:"Opener A — Permission-based", version:"A1", status:"Testing", changeNote:"Baseline",
-   body:"Hi [Name], this is [You] with Compass. I know I'm calling out of the blue — do you have 30 seconds for me to tell you why I called, and you can tell me if it's worth a longer chat?\n\n→ DISCOVER\n• What's working best in your business right now?\n• If you could change one thing about your current brokerage, what would it be?\n• Where do you want your business in two years?\n\n→ BRIDGE: repeat their answer back in one sentence.\n\n→ ONE relevant value point (marketing / tech / Concierge / team support).\n\n→ ASK: Would it be crazy to grab 20 minutes [day] or [day]? No pressure to move — worst case you leave with a couple of ideas."},
-  {name:"Opener B — Market observation", version:"B1", status:"Testing", changeNote:"Leads with their listing/market",
-   body:"Hi [Name], [You] with Compass here. I was looking at your listing on [street/area] — nice work. Quick question: how's the [city] market treating you this year compared to last?\n\n→ Let them talk. Follow up: What's been the hardest part?\n\n→ BRIDGE + ONE value point tied to what they said.\n\n→ ASK: 20 minutes this week so I can show you how agents in [city] use it?"},
-  {name:"Opener C — Direct value", version:"C1", status:"Testing", changeNote:"Short, direct, respects time",
-   body:"Hi [Name], [You] with Compass. I'll be quick — I talk with productive agents in [city] about what they'd need to see to grow their business, and your name came up. Is now a bad time?\n\n→ If OK: What would have to be true for you to even consider a move?\n\n→ ASK: Let's grab 20 minutes — [day] or [day]?"},
-  {name:"Voicemail", version:"VM1", status:"Testing", changeNote:"Under 20 seconds, curiosity",
-   body:"Hi [Name], [You] with Compass. I had a quick question about your business in [city] — not urgent. [Number], again [Number]. Thanks [Name]."}
+  ["Opener A — Permission-based","Hi [Name], this is [You] with Compass. I know I'm calling out of the blue — do you have 30 seconds for me to tell you why I called, and you can tell me if it's worth a longer chat?\n\nDISCOVER\n• What's working best in your business right now?\n• If you could change one thing about your brokerage, what would it be?\n• Where do you want your business in two years?\n\nBRIDGE — repeat their answer in one sentence.\n\nONE value point that matches what they said.\n\nASK — Would it be crazy to grab 20 minutes [day] or [day]? No pressure to move — worst case you leave with a couple of ideas."],
+  ["Opener B — Market question","Hi [Name], [You] with Compass. I saw your listing on [street/area] — nice work. Quick question: how's the [City] market treating you this year compared to last?\n\nLet them talk. Then: What's been the hardest part?\n\nBRIDGE + ONE value point tied to what they said.\n\nASK — 20 minutes this week so I can show you how agents in [City] use it?"],
+  ["Opener C — Direct","Hi [Name], [You] with Compass. I'll be quick — I talk with productive agents in [City] about what they'd need to see to grow, and your name came up. Is now a bad time?\n\nIf OK: What would have to be true for you to even consider a move?\n\nASK — Let's grab 20 minutes, [day] or [day]?"],
+  ["Voicemail","Hi [Name], [You] with Compass. Quick question about your business in [City] — not urgent. [Number], again [Number]. Thanks [Name]."]
 ];
 var SEED_OBJ = [
-  ["I'm happy where I am","That's great — most agents I talk to are. I'm not asking you to move today; just 20 minutes so if anything ever changes you know what's out there."],
-  ["What's the split?","Depends on your production and what you need — I'd rather show real numbers than throw one out. What does your current setup look like?"],
-  ["Switching is too much hassle","Fair — what would the hassle be for you specifically? [listen] Here's how transitions usually work…"],
-  ["Just send me an email","Happy to. So I send something useful — marketing, tech, or splits: which would you care about most?"],
-  ["I'm busy right now","Totally — when's a better 2 minutes, later today or tomorrow morning?"],
-  ["Recruiters call me all the time","I bet — you must be doing something right. I'll make it worth it or I won't call again. Fair?"],
-  ["Compass is too corporate / heard bad news","Appreciate you being straight. What specifically did you hear? [listen, answer with facts only]"],
+  ["Happy where I am","That's great — most agents I talk to are. I'm not asking you to move today; just 20 minutes so if anything changes you know what's out there."],
+  ["What's the split?","Depends on your production and what you need — I'd rather show real numbers than throw one out. What does your setup look like now?"],
+  ["Too much hassle to switch","Fair — what would the hassle be for you specifically? [listen] Here's how transitions usually work…"],
+  ["Send me an email","Happy to. So it's useful — marketing, tech, or splits: which matters most to you?"],
+  ["Busy right now","Totally — better 2 minutes later today or tomorrow morning?"],
+  ["Recruiters call all the time","I bet — you must be doing something right. I'll make it worth it or I won't call again. Fair?"],
+  ["Too corporate / heard bad news","Appreciate you being straight. What specifically did you hear? [listen, facts only]"],
   ["I'm on a team","Is the decision yours or your team lead's? Would it make sense to include them?"],
-  ["Under contract / non-compete","Understood — when does that open up? I'll make a note to reconnect a month before."],
-  ["Not interested (no reason)","No problem. Just so I don't bother you again — is it the timing or Compass specifically?"]
+  ["Under contract","Understood — when does that open up? I'll reconnect a month before."]
 ];
-
 function seed(){
   var now = new Date().toISOString();
-  return {
-    version:1,
-    calls:[],
-    scripts: SEED_SCRIPTS.map(function(s){ return Object.assign({id:uid(), created:now}, s); }),
-    objections: SEED_OBJ.map(function(o){ return {id:uid(), label:o[0], response:o[1], notes:""}; }),
-    experiments: []
-  };
+  return { version:2, calls:[], experiments:[],
+    scripts: SEED_SCRIPTS.map(function(s){ return {id:uid(), name:s[0], body:s[1], status:"Testing", changeNote:"", created:now}; }),
+    objections: SEED_OBJ.map(function(o){ return {id:uid(), label:o[0], response:o[1]}; }),
+    session: {} };
 }
 var db;
 try { db = JSON.parse(localStorage.getItem(KEY)); } catch(e){ db = null; }
-if(!db || !db.calls){ db = seed(); save(true); }
-function save(silent, localOnly){ try { localStorage.setItem(KEY, JSON.stringify(db)); } catch(e){ if(!silent && !CLOUD) toast("Could not save — export a backup!"); } if(!localOnly) pushCloud(); }
+if(!db || !db.calls){ db = seed(); }
+normalize();
+function normalize(){
+  db.objections = db.objections||[]; db.experiments = db.experiments||[]; db.session = db.session||{};
+  db.scripts.forEach(function(s){ if(s.version && s.name.indexOf("("+s.version+")")<0 && s.version.length<8){ s.name += " ("+s.version+")"; delete s.version; } });
+}
+function scriptById(id){ return db.scripts.find(function(s){return s.id===id;}); }
+function scriptName(id){ var s=scriptById(id); return s? s.name : "(no script)"; }
+function objLabel(id){ var o=db.objections.find(function(x){return x.id===id;}); return o?o.label:"?"; }
 
-/* ---------- cloud sync (when hosted; file:// stays local-only) ---------- */
+/* ---------- cloud sync ---------- */
 var CLOUD = /^https?:$/.test(location.protocol);
-var code = ""; try { code = localStorage.getItem(KEY+".code") || ""; } catch(e){}
-var pushTimer = null, pushing = false, pushAgain = false, dirty = false;
-function syncStatus(t, bad){ var el=document.getElementById("syncStatus"); if(el){ el.textContent=t; el.style.color = bad ? "var(--bad)" : ""; } }
-function api(method, body){
-  return fetch("/api/data", {method:method, headers:{"Content-Type":"application/json","x-access-code":code}, body: body?JSON.stringify(body):undefined, cache:"no-store"});
+var code = ""; try { code = localStorage.getItem(KEY+".code")||""; } catch(e){}
+var pushTimer=null, pushing=false, pushAgain=false, dirty=false;
+function syncStatus(t,bad){ $("syncStatus").textContent=t; $("syncStatus").style.color = bad?"var(--bad)":""; }
+function save(localOnly){
+  try { localStorage.setItem(KEY, JSON.stringify(db)); } catch(e){}
+  if(!localOnly) pushCloud();
 }
-function pushCloud(){
-  if(!CLOUD || !code) return;
-  dirty = true; syncStatus("Saving…");
-  clearTimeout(pushTimer); pushTimer = setTimeout(doPush, 700);
-}
+function api(method, body){ return fetch("/api/data",{method:method,headers:{"Content-Type":"application/json","x-access-code":code},body:body?JSON.stringify(body):undefined,cache:"no-store"}); }
+function pushCloud(){ if(!CLOUD||!code) return; dirty=true; syncStatus("Saving…"); clearTimeout(pushTimer); pushTimer=setTimeout(doPush,600); }
 function doPush(){
-  pushTimer = null;
-  if(pushing){ pushAgain = true; return; }
-  pushing = true;
+  pushTimer=null; if(pushing){ pushAgain=true; return; } pushing=true;
   api("PUT", db).then(function(r){
     if(r.status===401){ lock("Access code no longer valid."); throw new Error("auth"); }
     if(!r.ok) throw new Error("http "+r.status);
-    if(!pushAgain && !pushTimer) dirty = false; syncStatus("Saved to cloud ✓");
-  }).catch(function(e){ if(e.message!=="auth") syncStatus("Offline — saved on this device, will retry", true); setTimeout(pushCloud, 15000); })
+    if(!pushAgain && !pushTimer) dirty=false; syncStatus("Saved to cloud ✓");
+  }).catch(function(e){ if(e.message!=="auth"){ syncStatus("Offline — saved on this device, retrying", true); setTimeout(pushCloud,15000); } })
   .then(function(){ pushing=false; if(pushAgain){ pushAgain=false; doPush(); } });
 }
-function lock(msg){
-  code=""; try { localStorage.removeItem(KEY+".code"); } catch(e){}
-  document.getElementById("lockErr").textContent = msg||"";
-  document.getElementById("lock").classList.add("show");
-  setTimeout(function(){ document.getElementById("lockCode").focus(); }, 50);
-}
+function lock(msg){ code=""; try{localStorage.removeItem(KEY+".code");}catch(e){} $("lockErr").textContent=msg||""; $("lock").classList.add("show"); setTimeout(function(){$("lockCode").focus();},50); }
 function loadCloud(refresh){
   syncStatus("Loading…");
   return api("GET").then(function(r){
@@ -393,335 +318,225 @@ function loadCloud(refresh){
     if(r.status===503){ lock("The server has no ACCESS_CODE set yet. In Vercel: Settings → Environment Variables → add ACCESS_CODE (Production checked), then Redeploy."); return; }
     if(!r.ok){ return r.text().then(function(t){ lock("Server error ("+r.status+"). Storage may not be connected. "+t.slice(0,120)); }); }
     return r.json().then(function(d){
-      document.getElementById("lock").classList.remove("show");
-      if(d && d.calls && d.scripts){ d.objections=d.objections||[]; d.experiments=d.experiments||[]; db=d; save(true, true); syncStatus("Synced ✓"); }
-      else { pushCloud(); }
-      if(!refresh) resetForm(false); render();
+      $("lock").classList.remove("show");
+      if(d && d.calls && d.scripts){ db=d; normalize(); save(true); syncStatus("Synced ✓"); } else pushCloud();
+      renderAll(!refresh);
     });
-  }).catch(function(){ document.getElementById("lock").classList.remove("show"); syncStatus("Offline — using data on this device", true); });
+  }).catch(function(){ $("lock").classList.remove("show"); syncStatus("Offline — using this device", true); });
 }
 
-/* ---------- theme ---------- */
-try { var th = localStorage.getItem(KEY+".theme"); if(th) document.documentElement.setAttribute("data-theme", th); } catch(e){}
-$("#themeBtn").onclick = function(){
-  var cur = document.documentElement.getAttribute("data-theme");
+/* ---------- theme & tabs ---------- */
+try { var th=localStorage.getItem(KEY+".theme"); if(th) document.documentElement.setAttribute("data-theme",th); } catch(e){}
+$("themeBtn").onclick=function(){
+  var cur=document.documentElement.getAttribute("data-theme");
   var dark = cur ? cur==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  var next = dark ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  try { localStorage.setItem(KEY+".theme", next); } catch(e){}
+  var next = dark?"light":"dark"; document.documentElement.setAttribute("data-theme",next);
+  try{localStorage.setItem(KEY+".theme",next);}catch(e){}
 };
+var tab="call";
+$$("#tabs button").forEach(function(b){ b.onclick=function(){
+  tab=b.dataset.tab; $$("#tabs button").forEach(function(x){x.classList.toggle("on",x===b);});
+  $$("main section").forEach(function(s){s.classList.toggle("on",s.id===tab);}); renderAll();
+};});
 
-/* ---------- tabs ---------- */
-$$("#tabs button").forEach(function(b){
-  b.onclick = function(){
-    $$("#tabs button").forEach(function(x){ x.classList.toggle("on", x===b); });
-    $$("main section").forEach(function(s){ s.classList.toggle("on", s.id===b.dataset.tab); });
-    render();
-  };
+/* ---------- call screen ---------- */
+var sel = {};          // objections tapped for the current call
+var lastId = null;     // last logged call (for undo)
+var useB = false;      // A/B alternation state
+
+function uniq(f){ var m={}; db.calls.forEach(function(c){ if(c[f]) m[c[f]]=1; }); return Object.keys(m).sort(); }
+function fillSession(){
+  var active = db.scripts.filter(function(s){return s.status!=="Retired";});
+  var opts = active.map(function(s){ return '<option value="'+s.id+'">'+esc(s.name)+(s.status==="Winner"?" ★":"")+'</option>'; }).join("");
+  $("sA").innerHTML = opts; $("sB").innerHTML = '<option value="">— no A/B test —</option>'+opts;
+  var se=db.session;
+  if(!scriptById(se.a) || scriptById(se.a).status==="Retired") se.a = active[0]&&active[0].id;
+  if(se.b && (!scriptById(se.b) || se.b===se.a)) se.b="";
+  $("sA").value=se.a||""; $("sB").value=se.b||"";
+  $("sState").value=se.state||""; $("sCity").value=se.city||""; $("sSource").value=se.source||"";
+  [["dlState","state"],["dlCity","city"],["dlSource","source"]].forEach(function(p){ $(p[0]).innerHTML=uniq(p[1]).map(function(v){return '<option value="'+esc(v)+'">';}).join(""); });
+}
+function sessionChanged(){
+  var se=db.session; se.a=$("sA").value; se.b=$("sB").value===se.a?"":$("sB").value;
+  se.state=$("sState").value.trim().toUpperCase(); se.city=$("sCity").value.trim(); se.source=$("sSource").value.trim();
+  useB=false; save(); renderCallScreen();
+}
+["sA","sB","sState","sCity","sSource"].forEach(function(id){ $(id).onchange=sessionChanged; });
+
+function currentScriptId(){ var se=db.session; return (se.b && useB) ? se.b : se.a; }
+function statsFor(list){
+  var s={dials:list.length,conn:0,pos:0,meet:0};
+  list.forEach(function(c){ var st=STAGE[c.outcome]||0; if(st>=1)s.conn++; if(st>=2)s.pos++; if(st>=3)s.meet++; });
+  s.connRate=pct(s.conn,s.dials); s.posRate=pct(s.pos,s.conn); s.meetRate=pct(s.meet,s.conn); return s;
+}
+function renderCallScreen(){
+  var id=currentScriptId(), s=scriptById(id), se=db.session;
+  $("abTag").hidden=!se.b; $("abTag").textContent = useB?"B":"A";
+  $("scriptName").textContent = s ? s.name : "Add a script in the Scripts tab";
+  var city=se.city||"[City]";
+  $("scriptBox").textContent = s ? s.body.replace(/\[City\]/g, city) : "";
+  var st=statsFor(db.calls.filter(function(c){return c.scriptId===id;}));
+  $("scriptStat").textContent = st.dials ? st.dials+" dials · "+st.connRate+"% pickup · "+st.meetRate+"% meeting" : "no dials yet";
+  $("pad").innerHTML = OUTCOMES.map(function(o,i){ return '<button class="ob t'+o.s+'" data-k="'+o.k+'"><kbd>'+(i+1)+'</kbd>'+esc(o.l)+'</button>'; }).join("");
+  $$("#pad .ob").forEach(function(b){ b.onclick=function(){ logCall(b.dataset.k); }; });
+  renderObjChips(); renderToday();
+}
+function renderObjChips(){
+  $("objChips").innerHTML = db.objections.map(function(o){ return '<span class="chip'+(sel[o.id]?" on":"")+'" data-id="'+o.id+'">'+esc(o.label)+'</span>'; }).join("") || '<span class="muted">Add objections in the Scripts tab.</span>';
+  $$("#objChips .chip").forEach(function(c){ c.onclick=function(){
+    var id=c.dataset.id, o=db.objections.find(function(x){return x.id===id;});
+    if(sel[id]){ delete sel[id]; $("reply").classList.remove("show"); }
+    else { sel[id]=1; $("reply").innerHTML="<b>"+esc(o.label)+"</b><br>"+esc(o.response||"(no reply saved yet)"); $("reply").classList.add("show"); }
+    renderObjChips();
+  };});
+}
+function renderToday(){
+  var t=dayKey(new Date()), s=statsFor(db.calls.filter(function(c){return (c.ts||"").slice(0,10)===t;}));
+  $("todayStats").innerHTML=[["Dials",s.dials],["Pickups",s.conn],["Positive",s.pos],["Meetings",s.meet]].map(function(k){return '<div><div class="v">'+k[1]+'</div><div class="l">'+k[0]+'</div></div>';}).join("");
+}
+function logCall(outcome){
+  var se=db.session;
+  var c={ id:uid(), ts:localDT(new Date()), outcome:outcome, scriptId:currentScriptId()||"",
+    state:se.state||"", city:se.city||"", source:se.source||"", objections:Object.keys(sel),
+    agent:$("cAgent").value.trim(), notes:$("cNote").value.trim() };
+  db.calls.push(c); lastId=c.id; save();
+  sel={}; $("cAgent").value=""; $("cNote").value=""; $("reply").classList.remove("show");
+  var label = LABEL[outcome]+(se.b?" · script "+(useB?"B":"A"):"");
+  if(se.b) useB=!useB;
+  $("lastLine").textContent="Logged: "+label+" at "+c.ts.slice(11); $("undoBtn").hidden=false;
+  toast("Logged: "+label, true);
+  renderCallScreen();
+}
+function undo(){
+  if(!lastId) return;
+  var c=db.calls.find(function(x){return x.id===lastId;});
+  db.calls=db.calls.filter(function(x){return x.id!==lastId;});
+  if(db.session.b) useB=!useB;
+  lastId=null; save(); $("undoBtn").hidden=true; $("lastLine").textContent="Undone"+(c?": "+LABEL[c.outcome]:"")+".";
+  $("toast").classList.remove("show"); renderCallScreen();
+}
+$("undoBtn").onclick=undo; $("toastUndo").onclick=undo;
+document.addEventListener("keydown",function(e){
+  if(tab!=="call" || $("lock").classList.contains("show")) return;
+  var t=e.target.tagName; if(t==="INPUT"||t==="TEXTAREA"||t==="SELECT") return;
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  var n=parseInt(e.key,10); if(n>=1 && n<=OUTCOMES.length){ e.preventDefault(); logCall(OUTCOMES[n-1].k); }
+  else if(e.key==="u"||e.key==="U"){ undo(); }
 });
 
-function scriptName(id){ var s = db.scripts.find(function(x){return x.id===id;}); return s ? s.name+(s.version?" ("+s.version+")":"") : "— none —"; }
-function objLabel(id){ var o = db.objections.find(function(x){return x.id===id;}); return o ? o.label : "?"; }
-function uniq(field){ var m={}; db.calls.forEach(function(c){ if(c[field]) m[c[field]]=1; }); return Object.keys(m).sort(); }
-
-/* ---------- log form ---------- */
-var form = $("#callForm");
-var selOutcome = "", selMood = "", selObj = {};
-
-function buildChips(){
-  $("#outcomeChips").innerHTML = OUTCOMES.map(function(o){ return '<span class="chip'+(selOutcome===o.k?" on":"")+'" data-k="'+o.k+'">'+esc(o.l)+'</span>'; }).join("");
-  $$("#outcomeChips .chip").forEach(function(c){ c.onclick=function(){ selOutcome=c.dataset.k; buildChips(); }; });
-  $("#objChips").innerHTML = db.objections.map(function(o){ return '<span class="chip'+(selObj[o.id]?" on":"")+'" data-k="'+o.id+'" title="'+esc(o.response)+'">'+esc(o.label)+'</span>'; }).join("") || '<span class="muted">Add objections in the Objections tab.</span>';
-  $$("#objChips .chip").forEach(function(c){ c.onclick=function(){ if(selObj[c.dataset.k]) delete selObj[c.dataset.k]; else selObj[c.dataset.k]=1; buildChips(); }; });
-  $("#moodChips").innerHTML = MOODS.map(function(m,i){ var v=String(i+1); return '<span class="chip'+(selMood===v?" on":"")+'" data-k="'+v+'">'+esc(m)+'</span>'; }).join("");
-  $$("#moodChips .chip").forEach(function(c){ c.onclick=function(){ selMood = selMood===c.dataset.k ? "" : c.dataset.k; buildChips(); }; });
-}
-
-function fillScriptSelect(){
-  var cur = form.elements.scriptId.value;
-  var opts = db.scripts.filter(function(s){ return s.status!=="Retired" || s.id===cur; });
-  form.elements.scriptId.innerHTML = '<option value="">— none —</option>' + opts.map(function(s){ return '<option value="'+s.id+'">'+esc(s.name+(s.version?" ("+s.version+")":""))+(s.status==="Winner"?" ★":"")+'</option>'; }).join("");
-  form.elements.scriptId.value = cur;
-  showScript();
-}
-function showScript(){
-  var s = db.scripts.find(function(x){ return x.id===form.elements.scriptId.value; });
-  $("#scriptView").textContent = s ? s.body : "Pick a script on the left and it will show here while you dial.";
-  if(s){
-    var st = statsFor(db.calls.filter(function(c){ return c.scriptId===s.id; }));
-    $("#scriptMeta").textContent = st.dials+" dials · "+st.connRate+"% connect · "+st.meetRate+"% meeting";
-  } else $("#scriptMeta").textContent = "";
-}
-form.elements.scriptId.onchange = showScript;
-
-function resetForm(keep){
-  var k = keep ? {state:form.elements.state.value, city:form.elements.city.value, scriptId:form.elements.scriptId.value, source:form.elements.source.value} : null;
-  form.reset(); form.elements.id.value="";
-  selOutcome=""; selMood=""; selObj={};
-  form.elements.ts.value = localDT(new Date());
-  if(k){ form.elements.state.value=k.state; form.elements.city.value=k.city; form.elements.scriptId.value=k.scriptId; form.elements.source.value=k.source; }
-  else {
-    try { var last = JSON.parse(localStorage.getItem(KEY+".lastScript")||"null"); if(last) form.elements.scriptId.value=last; } catch(e){}
-  }
-  $("#formTitle").textContent="Log a call"; $("#cancelEdit").hidden=true;
-  buildChips(); showScript();
-}
-
-function readForm(){
-  var f = new FormData(form), c = {};
-  ["id","agent","phone","brokerage","state","city","tenure","production","source","scriptId","ts","duration","followUp","notes","learning"].forEach(function(k){ c[k]=(f.get(k)||"").toString().trim(); });
-  c.state = c.state.toUpperCase();
-  c.outcome = selOutcome; c.mood = selMood; c.objections = Object.keys(selObj);
-  return c;
-}
-function submitCall(keep){
-  var c = readForm();
-  if(!c.agent){ toast("Agent name is required"); form.elements.agent.focus(); return; }
-  if(!c.outcome){ toast("Pick an outcome"); return; }
-  if(!c.ts) c.ts = localDT(new Date());
-  if(c.id){ var i = db.calls.findIndex(function(x){return x.id===c.id;}); if(i>-1) db.calls[i]=c; }
-  else { c.id = uid(); db.calls.push(c); }
-  try { localStorage.setItem(KEY+".lastScript", JSON.stringify(c.scriptId)); } catch(e){}
-  save(); toast("Saved: "+c.agent+" — "+OUT[c.outcome].l);
-  resetForm(keep); render();
-  form.elements.agent.focus();
-}
-form.onsubmit = function(e){ e.preventDefault(); submitCall(false); };
-$("#saveNextBtn").onclick = function(){ submitCall(true); };
-$("#cancelEdit").onclick = function(){ resetForm(false); };
-
-function editCall(id){
-  var c = db.calls.find(function(x){return x.id===id;}); if(!c) return;
-  $$("#tabs button")[0].click();
-  Object.keys(c).forEach(function(k){ if(form.elements[k] && typeof c[k]==="string") form.elements[k].value=c[k]; });
-  form.elements.id.value = c.id;
-  selOutcome=c.outcome||""; selMood=c.mood||""; selObj={}; (c.objections||[]).forEach(function(o){selObj[o]=1;});
-  $("#formTitle").textContent="Edit call — "+c.agent; $("#cancelEdit").hidden=false;
-  buildChips(); fillScriptSelect(); window.scrollTo(0,0);
-}
-function delCall(id){
-  if(!confirm("Delete this call?")) return;
-  db.calls = db.calls.filter(function(x){return x.id!==id;}); save(); render();
-}
-
-/* ---------- stats ---------- */
-function statsFor(list){
-  var s={dials:list.length, conn:0, pos:0, meet:0, joined:0};
-  list.forEach(function(c){ var st = OUT[c.outcome] ? OUT[c.outcome].stage : 0;
-    if(st>=1) s.conn++; if(st>=2) s.pos++; if(st>=3) s.meet++; if(st>=4) s.joined++; });
-  s.connRate=pct(s.conn,s.dials); s.posRate=pct(s.pos,s.conn); s.meetRate=pct(s.meet,s.conn);
-  return s;
-}
-function kpiHtml(s){
-  return [["Dials",s.dials],["Connects",s.conn],["Connect rate",s.connRate+"%"],["Positive rate",s.posRate+"%"],["Meetings",s.meet],["Meeting rate",s.meetRate+"%"],["Joined",s.joined]]
-    .map(function(k){ return '<div class="kpi"><div class="v">'+k[1]+'</div><div class="l">'+k[0]+'</div></div>'; }).join("");
-}
+/* ---------- results ---------- */
 function rangeCalls(){
-  var r = $("#iRange").value; if(r==="all") return db.calls;
-  var cut = Date.now() - Number(r)*864e5;
-  return db.calls.filter(function(c){ return new Date(c.ts).getTime() >= cut; });
+  var r=$("rRange").value; if(r==="all") return db.calls;
+  if(r==="1"){ var t=dayKey(new Date()); return db.calls.filter(function(c){return (c.ts||"").slice(0,10)===t;}); }
+  var cut=Date.now()-Number(r)*864e5; return db.calls.filter(function(c){return new Date(c.ts).getTime()>=cut;});
 }
-function groupBy(list, fn){
-  var m = {};
-  list.forEach(function(c){ var ks = fn(c); (Array.isArray(ks)?ks:[ks]).forEach(function(k){ if(k===""||k==null) k="(blank)"; (m[k]=m[k]||[]).push(c); }); });
-  return m;
-}
-function rankKey(){ return {meet:"meetRate",pos:"posRate",conn:"connRate"}[$("#iRank").value]; }
-function dimRows(list, fn, order){
-  var g = groupBy(list, fn), rk = rankKey();
-  var rows = Object.keys(g).map(function(k){ var s=statsFor(g[k]); s.key=k; return s; });
-  if(order) rows.sort(function(a,b){ return order.indexOf(a.key)-order.indexOf(b.key); });
-  else rows.sort(function(a,b){ return (b.dials>=10)-(a.dials>=10) || b[rk]-a[rk] || b.dials-a.dials; });
+function groupRows(list, fn, order){
+  var g={}; list.forEach(function(c){ var k=fn(c)||"(blank)"; (g[k]=g[k]||[]).push(c); });
+  var rk=$("rRank").value;
+  var rows=Object.keys(g).map(function(k){ var s=statsFor(g[k]); s.key=k; return s; });
+  if(order) rows.sort(function(a,b){return order.indexOf(a.key)-order.indexOf(b.key);});
+  else rows.sort(function(a,b){ return (b.dials>=20)-(a.dials>=20) || b[rk]-a[rk] || b.dials-a.dials; });
   return rows;
 }
-function dimTable(sel, rows, label){
-  var el=$(sel), rk=rankKey();
+function table(id, rows, label){
+  var rk=$("rRank").value, el=$(id);
   if(!rows.length){ el.innerHTML='<tr><td class="muted">No calls yet.</td></tr>'; return; }
-  var max = Math.max.apply(null, rows.map(function(r){return r[rk];}).concat([1]));
-  el.innerHTML = '<tr><th>'+esc(label)+'</th><th class="num">Dials</th><th class="num">Conn%</th><th class="num">Pos%</th><th class="num">Meet%</th><th class="num">Mtgs</th><th></th></tr>' +
-    rows.map(function(r){ return '<tr class="'+(r.dials<10?"thin":"")+'"><td>'+esc(r.key)+'</td><td class="num">'+r.dials+'</td><td class="num">'+r.connRate+'</td><td class="num">'+r.posRate+'</td><td class="num">'+r.meetRate+'</td><td class="num">'+r.meet+'</td><td class="barcell"><div class="bar" style="width:'+Math.round(r[rk]/max*100)+'%"></div></td></tr>'; }).join("");
+  var max=Math.max.apply(null,rows.map(function(r){return r[rk];}).concat([1]));
+  el.innerHTML='<tr><th>'+label+'</th><th class="n">Dials</th><th class="n">Pickup</th><th class="n">Positive</th><th class="n">Meeting</th><th></th></tr>'+
+    rows.map(function(r){ return '<tr class="'+(r.dials<20?"thin":"")+'"><td>'+esc(r.key)+'</td><td class="n">'+r.dials+'</td><td class="n">'+r.connRate+'%</td><td class="n">'+r.posRate+'%</td><td class="n">'+r.meetRate+'%</td><td style="width:90px"><div class="bar" style="width:'+Math.round(r[rk]/max*100)+'%"></div></td></tr>'; }).join("");
 }
-function hourBlock(c){ var h=new Date(c.ts).getHours(); if(isNaN(h)) return ""; if(h<9) return "Before 9am"; if(h<11) return "9–11am"; if(h<13) return "11am–1pm"; if(h<15) return "1–3pm"; if(h<17) return "3–5pm"; return "After 5pm"; }
-var HOUR_ORDER = ["Before 9am","9–11am","11am–1pm","1–3pm","3–5pm","After 5pm","(blank)"];
-
-function renderInsights(){
-  var list = rangeCalls();
-  $("#allKpis").innerHTML = kpiHtml(statsFor(list));
-  var rScript = dimRows(list, function(c){return scriptName(c.scriptId);});
-  var rState = dimRows(list, function(c){return c.state;});
-  var rCity = dimRows(list, function(c){return c.city?(c.city+(c.state?", "+c.state:"")):"";});
-  var rHour = dimRows(list, hourBlock, HOUR_ORDER);
-  var rDay = dimRows(list, function(c){ var d=new Date(c.ts).getDay(); return isNaN(d)?"":DAYS[d]; }, DAYS.concat(["(blank)"]));
-  dimTable("#tScript", rScript, "Script");
-  dimTable("#tState", rState, "State");
-  dimTable("#tCity", rCity, "City");
-  dimTable("#tBrokerage", dimRows(list, function(c){return c.brokerage;}), "Brokerage");
-  dimTable("#tHour", rHour, "Time");
-  dimTable("#tDay", rDay, "Day");
-  dimTable("#tTenure", dimRows(list, function(c){return c.tenure;}), "Experience");
-  dimTable("#tProd", dimRows(list, function(c){return c.production;}), "Production");
-  dimTable("#tSource", dimRows(list, function(c){return c.source;}), "Source");
-
-  // objections
-  var g = groupBy(list.filter(function(c){return (c.objections||[]).length;}), function(c){return c.objections;});
-  var orows = Object.keys(g).map(function(k){ var s=statsFor(g[k]); return {k:objLabel(k), n:g[k].length, rec:pct(s.pos,g[k].length)}; }).sort(function(a,b){return b.n-a.n;});
-  $("#tObj").innerHTML = orows.length ? '<tr><th>Objection</th><th class="num">Times heard</th><th class="num">Still positive after</th></tr>'+orows.map(function(r){ return '<tr class="'+(r.n<5?"thin":"")+'"><td>'+esc(r.k)+'</td><td class="num">'+r.n+'</td><td class="num">'+r.rec+'%</td></tr>'; }).join("") : '<tr><td class="muted">No objections logged yet.</td></tr>';
-
-  // auto insights
-  var out = [];
-  var total = statsFor(list);
-  if(total.dials < 20){ out.push("Only "+total.dials+" dials in this period. Log at least 20–30 before reading much into the tables — early numbers swing a lot."); }
-  function best(rows, name, key, min){ var ok = rows.filter(function(r){return r.dials>=min && r.key!=="(blank)" && r.key!=="— none —";}); if(ok.length<2) return; ok.sort(function(a,b){return b[key]-a[key];}); var b=ok[0], w=ok[ok.length-1]; if(b[key]===w[key]) return;
-    out.push("<b>"+esc(name)+":</b> “"+esc(b.key)+"” leads at "+b[key]+"% vs “"+esc(w.key)+"” at "+w[key]+"% (" + b.dials+" vs "+w.dials+" dials)."); }
-  best(rScript, "Best script for meetings", "meetRate", 10);
-  best(rScript, "Best script for positive replies", "posRate", 10);
-  best(rHour, "Best time to reach agents", "connRate", 10);
-  best(rDay, "Best day to reach agents", "connRate", 10);
-  best(rState, "Strongest state", "meetRate", 10);
-  best(rCity, "Strongest city", "meetRate", 10);
-  if(orows.length && orows[0].n>=5) out.push("<b>Most common objection:</b> “"+esc(orows[0].k)+"” ("+orows[0].n+" times, "+orows[0].rec+"% still ended positive). Sharpen this response first.");
-  var withMood = list.filter(function(c){return c.mood && OUT[c.outcome] && OUT[c.outcome].stage>=1;});
-  if(withMood.length>=10){ var avg = withMood.reduce(function(a,c){return a+Number(c.mood);},0)/withMood.length; out.push("<b>Average receptiveness</b> on live calls: "+avg.toFixed(1)+" / 5."); }
-  $("#autoInsights").innerHTML = out.length ? out.map(function(s){return '<div class="insight">'+s+'</div>';}).join("") : '<p class="muted">Insights appear once you have 10+ dials in at least two variants of something (scripts, states, time blocks…).</p>';
+function hourBlock(c){ var h=new Date(c.ts).getHours(); if(isNaN(h))return ""; return h<9?"Before 9am":h<11?"9–11am":h<13?"11am–1pm":h<15?"1–3pm":h<17?"3–5pm":"After 5pm"; }
+function renderResults(){
+  var list=rangeCalls(), s=statsFor(list);
+  $("kpis").innerHTML=[["Dials",s.dials],["Pickups",s.conn],["Pickup rate",s.connRate+"%"],["Positive rate",s.posRate+"%"],["Meetings",s.meet],["Meeting rate",s.meetRate+"%"]].map(function(k){return '<div class="kpi"><div class="v">'+k[1]+'</div><div class="l">'+k[0]+'</div></div>';}).join("");
+  var rS=groupRows(list,function(c){return scriptName(c.scriptId);}), rH=groupRows(list,hourBlock,["Before 9am","9–11am","11am–1pm","1–3pm","3–5pm","After 5pm","(blank)"]);
+  var rD=groupRows(list,function(c){var d=new Date(c.ts).getDay();return isNaN(d)?"":DAYS[d];},DAYS.concat(["(blank)"]));
+  var rSt=groupRows(list,function(c){return c.state;}), rC=groupRows(list,function(c){return c.city?(c.city+(c.state?", "+c.state:"")):"";});
+  table("tScript",rS,"Script"); table("tState",rSt,"State"); table("tCity",rC,"City"); table("tHour",rH,"Time"); table("tDay",rD,"Day");
+  table("tSource",groupRows(list,function(c){return c.source;}),"List / source");
+  var og={}; list.forEach(function(c){ (c.objections||[]).forEach(function(o){ (og[o]=og[o]||[]).push(c); }); });
+  var orows=Object.keys(og).map(function(k){ var st=statsFor(og[k]); return {k:objLabel(k), n:og[k].length, rec:pct(st.pos,og[k].length)}; }).sort(function(a,b){return b.n-a.n;});
+  $("tObj").innerHTML = orows.length ? '<tr><th>Objection</th><th class="n">Heard</th><th class="n">Still positive</th></tr>'+orows.map(function(r){return '<tr class="'+(r.n<5?"thin":"")+'"><td>'+esc(r.k)+'</td><td class="n">'+r.n+'</td><td class="n">'+r.rec+'%</td></tr>';}).join("") : '<tr><td class="muted">Tap objections on the Call screen to track them.</td></tr>';
+  var out=[];
+  if(s.dials<20) out.push("Only "+s.dials+" dials in this period — log 20+ per script before trusting the comparisons.");
+  function best(rows,what,key){ var ok=rows.filter(function(r){return r.dials>=20 && r.key!=="(blank)" && r.key!=="(no script)";}); if(ok.length<2) return;
+    ok.sort(function(a,b){return b[key]-a[key];}); var b=ok[0], w=ok[ok.length-1]; if(b[key]===w[key]) return;
+    out.push("<b>"+what+":</b> "+esc(b.key)+" — "+b[key]+"% vs "+esc(w.key)+" at "+w[key]+"% ("+b.dials+" vs "+w.dials+" dials)."); }
+  best(rS,"Best script for meetings","meetRate"); best(rS,"Best script for positive replies","posRate");
+  best(rH,"Best time to reach agents","connRate"); best(rD,"Best day","connRate");
+  best(rSt,"Best state","meetRate"); best(rC,"Best city","meetRate");
+  if(orows.length && orows[0].n>=5) out.push("<b>Most common objection:</b> “"+esc(orows[0].k)+"” ("+orows[0].n+"×, "+orows[0].rec+"% still ended positive). Sharpen that reply first.");
+  $("takeaways").innerHTML = out.length ? out.map(function(x){return '<div class="insight">'+x+'</div>';}).join("") : '<p class="muted">Takeaways show up once two scripts (or times, cities…) each have 20+ dials.</p>';
+  var rec=db.calls.slice().sort(function(a,b){return (b.ts||"").localeCompare(a.ts||"");}).slice(0,60);
+  $("recent").innerHTML = rec.length ? '<div class="tablewrap"><table><tr><th>When</th><th>Outcome</th><th>Script</th><th>Where</th><th>Objections</th><th>Agent / note</th><th></th></tr>'+rec.map(function(c){
+    return '<tr><td>'+esc((c.ts||"").replace("T"," "))+'</td><td>'+esc(LABEL[c.outcome]||c.outcome)+'</td><td>'+esc(scriptName(c.scriptId))+'</td><td>'+esc([c.city,c.state].filter(Boolean).join(", "))+'</td><td>'+esc((c.objections||[]).map(objLabel).join(", "))+'</td><td>'+esc([c.agent,c.notes].filter(Boolean).join(" — "))+'</td><td style="white-space:nowrap"><button class="btn ghost sm" data-note="'+c.id+'">Note</button> <button class="btn danger sm" data-del="'+c.id+'">✕</button></td></tr>'; }).join("")+'</table></div>' : '<p class="muted">No calls yet.</p>';
+  $$("[data-note]").forEach(function(b){ b.onclick=function(){ var c=db.calls.find(function(x){return x.id===b.dataset.note;}); var v=prompt("Note for this call", c.notes||""); if(v!==null){ c.notes=v.trim(); save(); renderResults(); } }; });
+  $$("[data-del]").forEach(function(b){ b.onclick=function(){ if(confirm("Delete this call?")){ db.calls=db.calls.filter(function(x){return x.id!==b.dataset.del;}); save(); renderResults(); } }; });
 }
+$("rRange").onchange=renderResults; $("rRank").onchange=renderResults;
 
-/* ---------- history ---------- */
-function fillFilter(sel, items, all){
-  var el=$(sel), cur=el.value;
-  el.innerHTML='<option value="">'+all+'</option>'+items.map(function(i){return '<option value="'+esc(i[0])+'">'+esc(i[1])+'</option>';}).join("");
-  el.value=cur;
-}
-function renderCalls(){
-  fillFilter("#fState", uniq("state").map(function(x){return [x,x];}), "All states");
-  fillFilter("#fCity", uniq("city").map(function(x){return [x,x];}), "All cities");
-  fillFilter("#fScript", db.scripts.map(function(s){return [s.id, scriptName(s.id)];}), "All scripts");
-  fillFilter("#fOutcome", OUTCOMES.map(function(o){return [o.k,o.l];}), "All outcomes");
-  var t=$("#fText").value.toLowerCase(), st=$("#fState").value, ci=$("#fCity").value, sc=$("#fScript").value, oc=$("#fOutcome").value, fr=$("#fFrom").value, to=$("#fTo").value;
-  var list = db.calls.filter(function(c){
-    if(st && c.state!==st) return false; if(ci && c.city!==ci) return false; if(sc && c.scriptId!==sc) return false; if(oc && c.outcome!==oc) return false;
-    var d=(c.ts||"").slice(0,10); if(fr && d<fr) return false; if(to && d>to) return false;
-    if(t && [c.agent,c.phone,c.brokerage,c.city,c.notes,c.learning,c.source].join(" ").toLowerCase().indexOf(t)<0) return false;
-    return true;
-  }).sort(function(a,b){ return (b.ts||"").localeCompare(a.ts||""); });
-  var s = statsFor(list);
-  $("#callCount").textContent = list.length+" calls · "+s.connRate+"% connect · "+s.posRate+"% positive · "+s.meetRate+"% meeting";
-  $("#callTable").innerHTML = '<tr><th>When</th><th>Agent</th><th>Location</th><th>Brokerage</th><th>Script</th><th>Outcome</th><th>Objections</th><th>Notes</th><th></th></tr>' +
-    (list.map(function(c){
-      var st=OUT[c.outcome]?OUT[c.outcome].stage:0, cls = st>=3?"good":st>=2?"warn":st===1?"bad":"";
-      return '<tr><td>'+esc((c.ts||"").replace("T"," "))+'</td><td><b>'+esc(c.agent)+'</b><br><span class="muted">'+esc(c.phone)+'</span></td><td>'+esc([c.city,c.state].filter(Boolean).join(", "))+'</td><td>'+esc(c.brokerage)+'</td><td>'+esc(scriptName(c.scriptId))+'</td><td><span class="tag '+cls+'">'+esc(OUT[c.outcome]?OUT[c.outcome].l:c.outcome)+'</span>'+(c.mood?'<br><span class="muted">mood '+esc(c.mood)+'/5</span>':'')+'</td><td>'+esc((c.objections||[]).map(objLabel).join(", "))+'</td><td>'+esc(c.notes)+(c.learning?'<br><span class="muted">→ '+esc(c.learning)+'</span>':'')+'</td><td><button class="btn ghost sm" data-edit="'+c.id+'">Edit</button> <button class="btn danger sm" data-del="'+c.id+'">✕</button></td></tr>';
-    }).join("") || '<tr><td colspan="9" class="muted">No calls match.</td></tr>');
-  $$("[data-edit]").forEach(function(b){ b.onclick=function(){editCall(b.dataset.edit);}; });
-  $$("[data-del]").forEach(function(b){ b.onclick=function(){delCall(b.dataset.del);}; });
-
-  var today = dayKey(new Date());
-  var fu = db.calls.filter(function(c){ return c.followUp && c.outcome!=="joined" && c.outcome!=="dnc"; }).sort(function(a,b){return a.followUp.localeCompare(b.followUp);});
-  $("#followTable").innerHTML = fu.length ? '<tr><th>Due</th><th>Agent</th><th>Phone</th><th>Last outcome</th><th>Notes</th></tr>'+fu.map(function(c){ return '<tr><td><span class="tag '+(c.followUp<today?"bad":c.followUp===today?"warn":"")+'">'+esc(c.followUp)+'</span></td><td>'+esc(c.agent)+'</td><td>'+esc(c.phone)+'</td><td>'+esc(OUT[c.outcome]?OUT[c.outcome].l:"")+'</td><td>'+esc(c.notes)+'</td></tr>'; }).join("") : '<tr><td class="muted">No follow-ups scheduled.</td></tr>';
-}
-["#fText","#fState","#fCity","#fScript","#fOutcome","#fFrom","#fTo"].forEach(function(s){ $(s).oninput = renderCalls; });
-$("#iRange").onchange = renderInsights; $("#iRank").onchange = renderInsights;
-
-/* ---------- scripts ---------- */
-var sForm = $("#scriptForm");
-sForm.onsubmit = function(e){ e.preventDefault();
-  var f=new FormData(sForm), s={}; ["id","name","version","status","body","changeNote"].forEach(function(k){ s[k]=(f.get(k)||"").toString(); });
-  if(s.id){ var o=db.scripts.find(function(x){return x.id===s.id;}); Object.assign(o,s); }
-  else { s.id=uid(); s.created=new Date().toISOString(); db.scripts.push(s); }
-  save(); toast("Script saved"); sForm.reset(); sForm.elements.id.value=""; $("#scriptFormTitle").textContent="New script / version"; render();
+/* ---------- scripts & objections ---------- */
+function clearScriptForm(){ $("sfId").value=""; $("sfName").value=""; $("sfBody").value=""; $("sfNote").value=""; $("sfStatus").value="Testing"; $("sfTitle").textContent="New script"; }
+$("sfClear").onclick=clearScriptForm;
+$("sfSave").onclick=function(){
+  var name=$("sfName").value.trim(), body=$("sfBody").value.trim(); if(!name||!body){ toast("Give the script a name and text"); return; }
+  var id=$("sfId").value, s=id&&scriptById(id);
+  if(s){ s.name=name; s.body=body; s.status=$("sfStatus").value; s.changeNote=$("sfNote").value.trim(); }
+  else db.scripts.push({id:uid(),name:name,body:body,status:$("sfStatus").value,changeNote:$("sfNote").value.trim(),created:new Date().toISOString()});
+  save(); clearScriptForm(); toast("Script saved"); renderScripts();
 };
-$("#scriptReset").onclick=function(){ sForm.reset(); sForm.elements.id.value=""; $("#scriptFormTitle").textContent="New script / version"; };
+function clearObjForm(){ $("ofId").value=""; $("ofLabel").value=""; $("ofReply").value=""; }
+$("ofClear").onclick=clearObjForm;
+$("ofSave").onclick=function(){
+  var l=$("ofLabel").value.trim(); if(!l){ toast("Type what they say"); return; }
+  var id=$("ofId").value, o=id&&db.objections.find(function(x){return x.id===id;});
+  if(o){ o.label=l; o.response=$("ofReply").value.trim(); } else db.objections.push({id:uid(),label:l,response:$("ofReply").value.trim()});
+  save(); clearObjForm(); toast("Objection saved"); renderScripts();
+};
 function renderScripts(){
   var order={Winner:0,Testing:1,Retired:2};
-  $("#scriptList").innerHTML = db.scripts.slice().sort(function(a,b){return order[a.status]-order[b.status];}).map(function(s){
+  $("scriptList").innerHTML = db.scripts.slice().sort(function(a,b){return order[a.status]-order[b.status];}).map(function(s){
     var st=statsFor(db.calls.filter(function(c){return c.scriptId===s.id;}));
-    var cls = s.status==="Winner"?"good":s.status==="Retired"?"bad":"warn";
-    return '<div class="list-item"><div class="top"><b>'+esc(s.name)+(s.version?' <span class="muted">'+esc(s.version)+'</span>':'')+'</b><span class="tag '+cls+'">'+esc(s.status)+'</span></div>'+
-      '<p class="muted" style="margin:6px 0">'+st.dials+' dials · '+st.connRate+'% connect · '+st.posRate+'% positive · '+st.meetRate+'% meeting · '+st.meet+' meetings'+(st.dials<10?' · <i>needs more data</i>':'')+'</p>'+
-      (s.changeNote?'<p class="muted" style="margin:0 0 6px">Change: '+esc(s.changeNote)+'</p>':'')+
-      '<details><summary class="muted">Show script</summary><div class="script-view" style="margin-top:8px">'+esc(s.body)+'</div></details>'+
-      '<div class="row" style="margin-top:8px"><button class="btn ghost sm" data-sedit="'+s.id+'">Edit</button><button class="btn ghost sm" data-sclone="'+s.id+'">Clone as new version</button><button class="btn danger sm" data-sdel="'+s.id+'">Delete</button></div></div>';
+    return '<div class="item"><div class="top"><b>'+esc(s.name)+'</b><span class="tag">'+esc(s.status)+'</span></div>'+
+      '<div class="muted" style="margin:4px 0">'+st.dials+' dials · '+st.connRate+'% pickup · '+st.posRate+'% positive · '+st.meetRate+'% meeting'+(st.dials<20?' · needs more dials':'')+(s.changeNote?'<br>Change: '+esc(s.changeNote):'')+'</div>'+
+      '<div class="row"><button class="btn ghost sm" data-se="'+s.id+'">Edit</button><button class="btn ghost sm" data-sc="'+s.id+'">Copy as new version</button><button class="btn danger sm" data-sd="'+s.id+'">Delete</button></div></div>';
   }).join("") || '<p class="muted">No scripts yet.</p>';
-  $$("[data-sedit]").forEach(function(b){ b.onclick=function(){ var s=db.scripts.find(function(x){return x.id===b.dataset.sedit;}); ["id","name","version","status","body","changeNote"].forEach(function(k){ sForm.elements[k].value=s[k]||""; }); $("#scriptFormTitle").textContent="Edit script"; window.scrollTo(0,0); }; });
-  $$("[data-sclone]").forEach(function(b){ b.onclick=function(){ var s=db.scripts.find(function(x){return x.id===b.dataset.sclone;}); ["name","body"].forEach(function(k){ sForm.elements[k].value=s[k]||""; }); sForm.elements.id.value=""; sForm.elements.version.value=(s.version||"v1")+"→next"; sForm.elements.status.value="Testing"; sForm.elements.changeNote.value=""; $("#scriptFormTitle").textContent="New version of "+s.name; sForm.elements.changeNote.focus(); window.scrollTo(0,0); }; });
-  $$("[data-sdel]").forEach(function(b){ b.onclick=function(){ var used=db.calls.some(function(c){return c.scriptId===b.dataset.sdel;}); if(used){ alert("This script has calls logged against it. Mark it Retired instead so its history stays in the insights."); return; } if(confirm("Delete script?")){ db.scripts=db.scripts.filter(function(x){return x.id!==b.dataset.sdel;}); save(); render(); } }; });
-}
-
-/* ---------- objections ---------- */
-var oForm=$("#objForm");
-oForm.onsubmit=function(e){ e.preventDefault(); var f=new FormData(oForm), o={}; ["id","label","response","notes"].forEach(function(k){ o[k]=(f.get(k)||"").toString(); });
-  if(o.id){ Object.assign(db.objections.find(function(x){return x.id===o.id;}), o); } else { o.id=uid(); db.objections.push(o); }
-  save(); toast("Objection saved"); oForm.reset(); oForm.elements.id.value=""; render(); };
-$("#objReset").onclick=function(){ oForm.reset(); oForm.elements.id.value=""; };
-function renderObj(){
-  $("#objList").innerHTML = db.objections.map(function(o){
-    var hits=db.calls.filter(function(c){return (c.objections||[]).indexOf(o.id)>-1;}), s=statsFor(hits);
-    return '<div class="list-item"><div class="top"><b>'+esc(o.label)+'</b><span class="muted">heard '+hits.length+'× · '+pct(s.pos,hits.length)+'% recovered</span></div>'+
-      (o.response?'<p style="margin:6px 0">'+esc(o.response)+'</p>':'')+(o.notes?'<p class="muted" style="margin:0">'+esc(o.notes)+'</p>':'')+
-      '<div class="row" style="margin-top:8px"><button class="btn ghost sm" data-oedit="'+o.id+'">Edit</button><button class="btn danger sm" data-odel="'+o.id+'">Delete</button></div></div>';
+  $$("[data-se]").forEach(function(b){ b.onclick=function(){ var s=scriptById(b.dataset.se); $("sfId").value=s.id; $("sfName").value=s.name; $("sfBody").value=s.body; $("sfStatus").value=s.status; $("sfNote").value=s.changeNote||""; $("sfTitle").textContent="Edit script"; window.scrollTo(0,0); }; });
+  $$("[data-sc]").forEach(function(b){ b.onclick=function(){ var s=scriptById(b.dataset.sc); $("sfId").value=""; $("sfName").value=s.name+" v2"; $("sfBody").value=s.body; $("sfStatus").value="Testing"; $("sfNote").value=""; $("sfTitle").textContent="New version of "+s.name; $("sfNote").focus(); window.scrollTo(0,0); }; });
+  $$("[data-sd]").forEach(function(b){ b.onclick=function(){ if(db.calls.some(function(c){return c.scriptId===b.dataset.sd;})){ alert("This script has calls logged. Set it to Retired instead so its results stay."); return; } if(confirm("Delete script?")){ db.scripts=db.scripts.filter(function(x){return x.id!==b.dataset.sd;}); save(); renderScripts(); } }; });
+  $("objList").innerHTML = db.objections.map(function(o){
+    var n=db.calls.filter(function(c){return (c.objections||[]).indexOf(o.id)>-1;}).length;
+    return '<div class="item"><div class="top"><b>'+esc(o.label)+'</b><span class="muted">heard '+n+'×</span></div><div style="margin:4px 0">'+esc(o.response)+'</div><div class="row"><button class="btn ghost sm" data-oe="'+o.id+'">Edit</button><button class="btn danger sm" data-od="'+o.id+'">Delete</button></div></div>';
   }).join("") || '<p class="muted">No objections yet.</p>';
-  $$("[data-oedit]").forEach(function(b){ b.onclick=function(){ var o=db.objections.find(function(x){return x.id===b.dataset.oedit;}); ["id","label","response","notes"].forEach(function(k){ oForm.elements[k].value=o[k]||""; }); window.scrollTo(0,0); }; });
-  $$("[data-odel]").forEach(function(b){ b.onclick=function(){ if(confirm("Delete objection? Past calls will show it as '?'.")){ db.objections=db.objections.filter(function(x){return x.id!==b.dataset.odel;}); save(); render(); } }; });
-}
-
-/* ---------- experiments ---------- */
-var eForm=$("#expForm");
-eForm.onsubmit=function(e){ e.preventDefault(); var f=new FormData(eForm), x={}; ["id","title","start","status","hypothesis","change","result"].forEach(function(k){ x[k]=(f.get(k)||"").toString(); });
-  if(x.id){ Object.assign(db.experiments.find(function(y){return y.id===x.id;}), x); } else { x.id=uid(); db.experiments.push(x); }
-  save(); toast("Experiment saved"); eForm.reset(); eForm.elements.id.value=""; eForm.elements.start.value=dayKey(new Date()); render(); };
-$("#expReset").onclick=function(){ eForm.reset(); eForm.elements.id.value=""; eForm.elements.start.value=dayKey(new Date()); };
-function renderExp(){
-  $("#expList").innerHTML = db.experiments.slice().sort(function(a,b){return (b.start||"").localeCompare(a.start||"");}).map(function(x){
-    var cls = x.status==="Won"?"good":x.status==="Lost"?"bad":"warn";
-    var since = db.calls.filter(function(c){ return x.start && (c.ts||"").slice(0,10)>=x.start; }), s=statsFor(since);
-    return '<div class="list-item"><div class="top"><b>'+esc(x.title)+'</b><span class="tag '+cls+'">'+esc(x.status)+'</span></div>'+
-      '<p class="muted" style="margin:6px 0">Started '+esc(x.start||"—")+' · since then: '+s.dials+' dials, '+s.meetRate+'% meeting</p>'+
-      (x.hypothesis?'<p style="margin:4px 0"><b>Hypothesis:</b> '+esc(x.hypothesis)+'</p>':'')+(x.change?'<p style="margin:4px 0"><b>Change:</b> '+esc(x.change)+'</p>':'')+(x.result?'<p style="margin:4px 0"><b>Result:</b> '+esc(x.result)+'</p>':'')+
-      '<div class="row" style="margin-top:8px"><button class="btn ghost sm" data-eedit="'+x.id+'">Edit</button><button class="btn danger sm" data-edel="'+x.id+'">Delete</button></div></div>';
-  }).join("") || '<p class="muted">No experiments yet. Start one: pick ONE thing to change, write what you expect, then dial.</p>';
-  $$("[data-eedit]").forEach(function(b){ b.onclick=function(){ var x=db.experiments.find(function(y){return y.id===b.dataset.eedit;}); ["id","title","start","status","hypothesis","change","result"].forEach(function(k){ eForm.elements[k].value=x[k]||""; }); window.scrollTo(0,0); }; });
-  $$("[data-edel]").forEach(function(b){ b.onclick=function(){ if(confirm("Delete experiment?")){ db.experiments=db.experiments.filter(function(y){return y.id!==b.dataset.edel;}); save(); render(); } }; });
+  $$("[data-oe]").forEach(function(b){ b.onclick=function(){ var o=db.objections.find(function(x){return x.id===b.dataset.oe;}); $("ofId").value=o.id; $("ofLabel").value=o.label; $("ofReply").value=o.response||""; $("ofLabel").focus(); }; });
+  $$("[data-od]").forEach(function(b){ b.onclick=function(){ if(confirm("Delete objection?")){ db.objections=db.objections.filter(function(x){return x.id!==b.dataset.od;}); save(); renderScripts(); } }; });
 }
 
 /* ---------- import / export ---------- */
-function download(name, text, type){ var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500); }
-$("#exportJson").onclick=function(){ download("call-lab-backup-"+dayKey(new Date())+".json", JSON.stringify(db,null,2), "application/json"); };
-$("#exportCsv").onclick=function(){
-  var cols=["ts","agent","phone","brokerage","state","city","tenure","production","source","script","outcome","mood","objections","duration","followUp","notes","learning"];
+function download(name,text,type){ var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500); }
+$("exportJson").onclick=function(){ download("call-lab-backup-"+dayKey(new Date())+".json", JSON.stringify(db,null,2), "application/json"); };
+$("exportCsv").onclick=function(){
+  var cols=["ts","outcome","script","state","city","source","objections","agent","notes"];
   var q=function(v){ v=String(v==null?"":v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
-  var lines=[cols.join(",")].concat(db.calls.map(function(c){ return cols.map(function(k){
-    if(k==="script") return q(scriptName(c.scriptId)); if(k==="outcome") return q(OUT[c.outcome]?OUT[c.outcome].l:c.outcome);
-    if(k==="objections") return q((c.objections||[]).map(objLabel).join("; ")); return q(c[k]); }).join(","); }));
-  download("call-log-"+dayKey(new Date())+".csv", lines.join("\n"), "text/csv");
+  download("call-log-"+dayKey(new Date())+".csv", [cols.join(",")].concat(db.calls.map(function(c){ return cols.map(function(k){
+    if(k==="outcome") return q(LABEL[c.outcome]||c.outcome); if(k==="script") return q(scriptName(c.scriptId));
+    if(k==="objections") return q((c.objections||[]).map(objLabel).join("; ")); return q(c[k]); }).join(","); })).join("\n"), "text/csv");
 };
-$("#importJson").onchange=function(e){
-  var file=e.target.files[0]; if(!file) return;
-  var r=new FileReader(); r.onload=function(){
-    try { var d=JSON.parse(r.result); if(!d.calls||!d.scripts) throw 0;
-      if(!confirm("Replace current data with this backup ("+d.calls.length+" calls)?")) return;
-      d.objections=d.objections||[]; d.experiments=d.experiments||[]; db=d; save(); resetForm(false); render(); toast("Backup restored");
-    } catch(err){ alert("That file isn't a Call Lab backup."); }
-    e.target.value="";
-  }; r.readAsText(file);
-};
+$("importJson").onchange=function(e){ var f=e.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){
+  try{ var d=JSON.parse(r.result); if(!d.calls||!d.scripts) throw 0; if(!confirm("Replace current data with this backup ("+d.calls.length+" calls)?")) return; db=d; normalize(); save(); renderAll(true); toast("Backup restored"); }
+  catch(err){ alert("That file isn't a Call Lab backup."); } e.target.value=""; }; r.readAsText(f); };
 
-/* ---------- render ---------- */
-function datalists(){
-  [["dl-brokerage","brokerage"],["dl-state","state"],["dl-city","city"],["dl-source","source"]].forEach(function(p){ $("#"+p[0]).innerHTML=uniq(p[1]).map(function(v){return '<option value="'+esc(v)+'">';}).join(""); });
+/* ---------- boot ---------- */
+function renderAll(full){
+  if(full!==false) fillSession();
+  if(tab==="call") renderCallScreen(); if(tab==="results") renderResults(); if(tab==="scripts") renderScripts();
 }
-function renderToday(){
-  var t=dayKey(new Date()); $("#todayKpis").innerHTML = kpiHtml(statsFor(db.calls.filter(function(c){return (c.ts||"").slice(0,10)===t;})));
-}
-function render(){
-  datalists(); fillScriptSelect(); buildChips(); renderToday();
-  var tab=$("#tabs button.on").dataset.tab;
-  if(tab==="calls") renderCalls(); if(tab==="insights") renderInsights(); if(tab==="scripts") renderScripts(); if(tab==="objections") renderObj(); if(tab==="experiments") renderExp();
-}
-eForm.elements.start.value=dayKey(new Date());
-fillScriptSelect(); resetForm(false); render();
+save(true); renderAll(true);
 if(CLOUD){
-  document.getElementById("lockForm").onsubmit = function(e){ e.preventDefault(); code = document.getElementById("lockCode").value.trim(); try { localStorage.setItem(KEY+".code", code); } catch(er){} loadCloud(); };
+  $("lockForm").onsubmit=function(e){ e.preventDefault(); code=$("lockCode").value.trim(); try{localStorage.setItem(KEY+".code",code);}catch(er){} loadCloud(); };
   if(code) loadCloud(); else lock();
-  window.addEventListener("focus", function(){ if(code && !dirty && !pushing) loadCloud(true); });
-} else syncStatus("Local file — data stays in this browser");
+  window.addEventListener("focus",function(){ if(code && !dirty && !pushing) loadCloud(true); });
+} else syncStatus("Local file — saved in this browser");
 })();
 </script>
 </body>

@@ -8,25 +8,25 @@ words, markets, and times actually turn into meetings.
 
 | File | What it's for |
 |---|---|
-| `call-lab.html` | The platform. Open it in a browser (double-click). Log calls, manage scripts, track objections, run experiments, see patterns. |
-| `playbook.md` | Starter scripts, the objection bank, and the testing method. Edit freely as you learn. |
+| `call-lab.html` | The platform — keep it open while you dial. |
+| `api/data.js` | Saves everything to private Vercel Blob storage (behind your access code). |
+| `playbook.md` | Starter scripts, objection replies, and the testing method. |
 
-## Daily loop
+## Calling day (minimal taps)
 
-1. **Pick today's experiment** (Experiments tab): change ONE thing — an opener, a question, a
-   market, a time block. Write the hypothesis before you dial.
-2. **Call mode** (Log a Call tab): pick the script, it shows on screen while you dial. After each
-   call, log it in ~15 seconds — outcome, objections, state/city, one-line note.
-3. **End of day**: read the Insights tab. Which script/state/city/hour had the best
-   connect → conversation → meeting rate? Write the result into the experiment.
-4. **Weekly**: promote the winner, retire the loser, start the next test.
+1. **Call tab → set once:** script, state, city, list. Every call inherits them.
+2. **Read the script on screen. When the call ends, tap the outcome** (or press 1–9). That's the whole log.
+3. **If they object,** tap the objection chip — your reply pops up, and it's recorded with that call.
+4. **A/B test:** pick a second script in "A/B test against" — it alternates A/B every dial automatically.
+5. Mis-tap? **Undo** (or press U). Want detail? The optional agent name / note box is there, never required.
+6. **End of day → Results:** which script, time, city, state wins. Edit or version scripts in **Scripts**.
 
 ## Reading the numbers
 
-- **Connect rate** = live conversations ÷ dials (mostly a list + timing problem).
+- **Pickup rate** = live conversations ÷ dials (mostly a list + timing problem).
 - **Positive rate** = callback / interested / meeting / joined ÷ connects (mostly a script problem).
 - **Meeting rate** = meetings + joins ÷ connects (the number that matters).
-- Rows with fewer than 10 dials are greyed out — don't draw conclusions from them yet.
+- Rows with fewer than 20 dials are greyed out — don't draw conclusions from them yet.
   Aim for ~30+ connects per variant before calling a winner.
 
 ## Put it on the web (Vercel) — data stored in the cloud
